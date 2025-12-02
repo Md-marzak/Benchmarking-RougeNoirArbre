@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1764707709 source:c:\users\pc\downloads\stack\benchmark\tp c++ avancee\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<set>
+	<unordered_set>
+	<map>
+	<string>
+	<cstdlib>
+	<ctime>
+	"Arbre.hpp"
+	"RougeNoirArbre.hpp"
+	"Clock.hpp"
+
+1764706822 c:\users\pc\downloads\stack\benchmark\tp c++ avancee\arbre.hpp
+	<queue>
+	"Node.hpp"
+
+1764707291 c:\users\pc\downloads\stack\benchmark\tp c++ avancee\node.hpp
+	<iostream>
+
+1764708599 c:\users\pc\downloads\stack\benchmark\tp c++ avancee\rougenoirarbre.hpp
+	"RougeNoirNode.hpp"
+	<iostream>
+
+1764707291 c:\users\pc\downloads\stack\benchmark\tp c++ avancee\rougenoirnode.hpp
+	<iostream>
+
+1764707291 c:\users\pc\downloads\stack\benchmark\tp c++ avancee\clock.hpp
+	<chrono>
+	<string>
+	<sstream>
+
