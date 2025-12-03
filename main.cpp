@@ -170,27 +170,28 @@ int main()
     // ==========================================================
     // TEST 5 : Arbre<string>
     // ==========================================================
-    printTitle("TEST 5 : Arbre<string>");
-    Arbre<string> stringTree;
+    printTitle("TEST 5 : Arbre<int>");
+    Arbre<int> intTree;
 
-    cout << "\n--------- Remplir Arbre<string> ! ---------";
-    timer.chronoStart();
-    for (size_t i = 0; i < realCount; ++i)
-        stringTree.inserer(keys[i], words[i]);
-    timer.chronoEnd();
-    cout << timer.display("Remplissage De L'Arbre<string> : ");
+cout << "\n--------- Remplir Arbre<int> ! ---------";
+timer.chronoStart();
+for (size_t i = 0; i < realCount; ++i)
+    intTree.inserer(keys[i], keys[i]);  // clé et valeur = int
+timer.chronoEnd();
+cout << timer.display("Remplissage De L'Arbre<int> : ");
 
-    cout << "\n--------- Recherche Arbre<string> (" << testKey << ") ---------";
-    timer.chronoStart();
-    Node<string>* foundNode = stringTree.rechercher(testKey);
-    timer.chronoEnd();
-    cout << timer.display("Recherche Dans L'Arbre<string> : ");
+cout << "\n--------- Recherche Arbre<int> (" << testKey << ") ---------";
+timer.chronoStart();
+Node<int>* foundNode = intTree.rechercher(testKey);
+timer.chronoEnd();
+cout << timer.display("Recherche Dans L'Arbre<int> : ");
 
-    cout << "\n--------- Suppression Arbre<string> (" << delKey << ") ---------";
-    timer.chronoStart();
-    stringTree.enlever(delKey);
-    timer.chronoEnd();
-    cout << timer.display("Suppression Dans L'Arbre<string> : ");
+cout << "\n--------- Suppression Arbre<int> (" << delKey << ") ---------";
+timer.chronoStart();
+intTree.enlever(delKey);
+timer.chronoEnd();
+cout << timer.display("Suppression Dans L'Arbre<int> : ");
+
 
     // ==========================================================
     // FIN
