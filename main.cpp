@@ -14,15 +14,26 @@
 
 using namespace std;
 
+void printTitle(const string& title)
+{
+    const int width = 46;   // largeur totale
+    int padding = (width - title.size()) / 2;
+
+    cout << "\n" << string(width, '*') << "\n";
+    cout << string(padding, '*') << "  " << title << "  "
+         << string(width - padding - title.size() - 4, '*') << "\n";
+    cout << string(width, '*') << "\n\n";
+}
+
 int main()
 {
-    const size_t COUNT = 1000000; // nombre d'éléments à tester
+    const size_t COUNT = 1000000; // nombre d'Ã©lÃ©ments Ã  tester
 
     srand(static_cast<unsigned>(time(nullptr)));
-    Clock monClock;
+    Clock timer;
 
     // -----------------------
-    // Lire les mots depuis le fichier
+    // Lecture fichier
     // -----------------------
     ifstream inputFile("wordsFile.txt");
     if (!inputFile.is_open())
@@ -33,11 +44,9 @@ int main()
 
     vector<string> words;
     words.reserve(COUNT);
-
     string word;
     while (words.size() < COUNT && (inputFile >> word))
         words.push_back(word);
-
     inputFile.close();
 
     if (words.empty())
@@ -47,154 +56,147 @@ int main()
     }
 
     // -----------------------
-    // Générer une clé aléatoire par mot
+    // GÃ©nÃ©rer des clÃ©s
     // -----------------------
     vector<int> keys;
     keys.reserve(words.size());
     for (size_t i = 0; i < words.size(); ++i)
-        keys.push_back(rand() % 1000001); // clés dans [0, 1_000_000]
+        keys.push_back(rand() % 1000001);
 
     size_t realCount = words.size();
     int testKey = keys[realCount / 2];
     int delKey  = keys[realCount / 3];
 
-    // -----------------------
+    // ==========================================================
     // TEST 1 : RougeNoirArbre<int>
-    // -----------------------
-    cout << "\n==============================================";
-    cout << "\n TEST 1 : RougeNoirArbre<int>";
-    cout << "\n==============================================";
-
-    RougeNoirArbre<int> monArbreRB;
+    // ==========================================================
+    printTitle("TEST 1 : RougeNoirArbre<int>");
+    RougeNoirArbre<int> rbTree;
 
     cout << "\n--------- Remplir Arbre RB ! ---------";
-    monClock.chronoStart();
-    for (int k : keys) monArbreRB.Inserer(k);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRemplissage De L'Arbre RB : ");
+    timer.chronoStart();
+    for (int k : keys) rbTree.Inserer(k);
+    timer.chronoEnd();
+    cout << timer.display("Remplissage De L'Arbre RB : ");
 
     cout << "\n--------- Recherche RB (" << testKey << ") ---------";
-    monClock.chronoStart();
-    monArbreRB.Search(monArbreRB.GetRacine(), testKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRecherche Dans L'Arbre RB : ");
+    timer.chronoStart();
+    rbTree.Search(rbTree.GetRacine(), testKey);
+    timer.chronoEnd();
+    cout << timer.display("Recherche Dans L'Arbre RB : ");
 
     cout << "\n--------- Suppression RB (" << delKey << ") ---------";
-    monClock.chronoStart();
-    monArbreRB.Supprimer(monArbreRB.Search(monArbreRB.GetRacine(), delKey));
-    monClock.chronoEnd();
-    cout << monClock.display("\nSuppression Dans L'Arbre RB : ");
-
-    // -----------------------
+    timer.chronoStart();
+    rbTree.Supprimer(rbTree.Search(rbTree.GetRacine(), delKey));
+    timer.chronoEnd();
+    cout << timer.display("Suppression Dans L'Arbre RB : ");
+    cout<<"\n";
+    // ==========================================================
     // TEST 2 : std::set<int>
-    // -----------------------
-    cout << "\n\n==============================================";
-    cout << "\n TEST 2 : std::set<int>";
-    cout << "\n==============================================";
-
-    set<int> stl_set;
+    // ==========================================================
+    printTitle("TEST 2 : std::set<int>");
+    set<int> orderedSet;
 
     cout << "\n--------- Remplir set ! ---------";
-    monClock.chronoStart();
-    for (int k : keys) stl_set.insert(k);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRemplissage Du set : ");
+    timer.chronoStart();
+    for (int k : keys) orderedSet.insert(k);
+    timer.chronoEnd();
+    cout << timer.display("Remplissage Du set : ");
 
     cout << "\n--------- Recherche set (" << testKey << ") ---------";
-    monClock.chronoStart();
-    stl_set.find(testKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRecherche Dans set : ");
+    timer.chronoStart();
+    orderedSet.find(testKey);
+    timer.chronoEnd();
+    cout << timer.display("Recherche Dans set : ");
 
     cout << "\n--------- Suppression set (" << delKey << ") ---------";
-    monClock.chronoStart();
-    stl_set.erase(delKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nSuppression Dans set : ");
+    timer.chronoStart();
+    orderedSet.erase(delKey);
+    timer.chronoEnd();
+    cout << timer.display("Suppression Dans set : ");
 
-    // -----------------------
+    cout<<"\n";
+    // ==========================================================
     // TEST 3 : std::unordered_set<int>
-    // -----------------------
-    cout << "\n\n==============================================";
-    cout << "\n TEST 3 : std::unordered_set<int>";
-    cout << "\n==============================================";
-
-    unordered_set<int> u_set;
+    // ==========================================================
+    printTitle("TEST 3 : unordered_set<int>");
+    unordered_set<int> hashSet;
 
     cout << "\n--------- Remplir unordered_set ! ---------";
-    monClock.chronoStart();
-    for (int k : keys) u_set.insert(k);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRemplissage De unordered_set : ");
+    timer.chronoStart();
+    for (int k : keys) hashSet.insert(k);
+    timer.chronoEnd();
+    cout << timer.display("Remplissage De unordered_set : ");
 
     cout << "\n--------- Recherche unordered_set (" << testKey << ") ---------";
-    monClock.chronoStart();
-    u_set.find(testKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRecherche Dans unordered_set : ");
+    timer.chronoStart();
+    hashSet.find(testKey);
+    timer.chronoEnd();
+    cout << timer.display("Recherche Dans unordered_set : ");
 
     cout << "\n--------- Suppression unordered_set (" << delKey << ") ---------";
-    monClock.chronoStart();
-    u_set.erase(delKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nSuppression Dans unordered_set : ");
+    timer.chronoStart();
+    hashSet.erase(delKey);
+    timer.chronoEnd();
+    cout << timer.display("Suppression Dans unordered_set : ");
 
-    // -----------------------
+    cout<<"\n";
+    // ==========================================================
     // TEST 4 : std::map<int,string>
-    // -----------------------
-    cout << "\n\n==============================================";
-    cout << "\n TEST 4 : std::map<int,string>";
-    cout << "\n==============================================";
-
-    map<int,string> mp;
+    // ==========================================================
+    printTitle("TEST 4 : map<int,string>");
+    map<int,string> treeMap;
 
     cout << "\n--------- Remplir map (key->word) ! ---------";
-    monClock.chronoStart();
+    timer.chronoStart();
     for (size_t i = 0; i < realCount; ++i)
-        mp.emplace(keys[i], words[i]);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRemplissage Du map : ");
+        treeMap.emplace(keys[i], words[i]);
+    timer.chronoEnd();
+    cout << timer.display("Remplissage Du map : ");
 
     cout << "\n--------- Recherche map (" << testKey << ") ---------";
-    monClock.chronoStart();
-    mp.find(testKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRecherche Dans map : ");
+    timer.chronoStart();
+    treeMap.find(testKey);
+    timer.chronoEnd();
+    cout << timer.display("Recherche Dans map : ");
 
     cout << "\n--------- Suppression map (" << delKey << ") ---------";
-    monClock.chronoStart();
-    mp.erase(delKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nSuppression Dans map : ");
+    timer.chronoStart();
+    treeMap.erase(delKey);
+    timer.chronoEnd();
+    cout << timer.display("Suppression Dans map : ");
 
-    // -----------------------
+    cout<<"\n";
+    // ==========================================================
     // TEST 5 : Arbre<string>
-    // -----------------------
-    cout << "\n\n==============================================";
-    cout << "\n TEST 5 : Arbre<string> ";
-    cout << "\n==============================================";
-
-    Arbre<string> monArbreStr;
+    // ==========================================================
+    printTitle("TEST 5 : Arbre<string>");
+    Arbre<string> stringTree;
 
     cout << "\n--------- Remplir Arbre<string> ! ---------";
-    monClock.chronoStart();
+    timer.chronoStart();
     for (size_t i = 0; i < realCount; ++i)
-        monArbreStr.inserer(keys[i], words[i]);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRemplissage De L'Arbre<string> : ");
+        stringTree.inserer(keys[i], words[i]);
+    timer.chronoEnd();
+    cout << timer.display("Remplissage De L'Arbre<string> : ");
 
     cout << "\n--------- Recherche Arbre<string> (" << testKey << ") ---------";
-    monClock.chronoStart();
-    Node<string>* nFound = monArbreStr.rechercher(testKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nRecherche Dans L'Arbre<string> : ");
+    timer.chronoStart();
+    Node<string>* foundNode = stringTree.rechercher(testKey);
+    timer.chronoEnd();
+    cout << timer.display("Recherche Dans L'Arbre<string> : ");
 
     cout << "\n--------- Suppression Arbre<string> (" << delKey << ") ---------";
-    monClock.chronoStart();
-    monArbreStr.enlever(delKey);
-    monClock.chronoEnd();
-    cout << monClock.display("\nSuppression Dans L'Arbre<string> : ");
+    timer.chronoStart();
+    stringTree.enlever(delKey);
+    timer.chronoEnd();
+    cout << timer.display("Suppression Dans L'Arbre<string> : ");
 
-    cout << "\n\n===== FIN DU TEST (" << realCount << " éléments) =====\n";
+    // ==========================================================
+    // FIN
+    // ==========================================================
+    printTitle("FIN DU TEST");
+
+    cout << "\nNombre d'Ã©lÃ©ments traitÃ©s : " << realCount << endl;
     return 0;
 }
