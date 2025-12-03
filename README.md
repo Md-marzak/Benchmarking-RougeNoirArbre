@@ -18,7 +18,7 @@ Les opérations testées sont : **insertion, recherche et suppression** sur **1 
 2. [Installation](#installation)  
 3. [Compilation et Exécution](#compilation-et-exécution)  
 4. [Structure du Projet](#structure-du-projet)  
-5. [Compte Rendu](#compte-rendu)  
+5. [Compte Rendu (PDF)](./Compte_Rendu_RedBlackTree.pdf)  
 
 ---
 
