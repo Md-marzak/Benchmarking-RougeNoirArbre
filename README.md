@@ -33,9 +33,9 @@ Les opérations testées sont : **insertion, recherche et suppression** sur **1 
 
 - `main.cpp` : Programme principal  
 - `RougeNoirArbre.h` : Implémentation de l'arbre rouge-noir
-- `RougeNoirNode.h` : Implémentation de l'arbre rouge-noir   
+- `RougeNoirNode.h` : Implémentation de node rouge-noir   
 - `Arbre.h` : Implémentation de l'arbre générique
-- `Node.h` : Implémentation de l'arbre générique
+- `Node.h` : Implémentation de Node 
 - `README.md` : Ce fichier  
 - `Compte_Rendu_RedBlackTree.pdf` : Rapport détaillé
   
