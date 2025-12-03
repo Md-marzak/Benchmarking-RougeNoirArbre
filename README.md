@@ -36,3 +36,13 @@ Cloner le dépôt sur votre ordinateur :
 ```bash
 git clone https://github.com/Md-marzak/Benchmarking-RougeNoirArbre.git
 cd Benchmarking-RougeNoirArbre
+
+## Structure du Projet
+
+- `main.cpp` : Programme principal  
+- `RougeNoirArbre.h` : Implémentation de l'arbre rouge-noir
+- `RougeNoirNode.h` : Implémentation de l'arbre rouge-noir   
+- `Arbre.h` : Implémentation de l'arbre générique
+- `Node.h` : Implémentation de l'arbre générique
+- `README.md` : Ce fichier  
+- `Compte_Rendu_RedBlackTree.pdf` : Rapport détaillé
