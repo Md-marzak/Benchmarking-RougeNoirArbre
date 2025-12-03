@@ -15,9 +15,9 @@ Les opérations testées sont : **insertion, recherche et suppression** sur **1 
 ## Table des Matières
 
 1. [Prérequis](#prérequis)  
-2. [Installation](#installation)  
+2. [Structure du Projet](#installation)  
 3. [Compilation et Exécution](#compilation-et-exécution)  
-4. [Structure du Projet](#structure-du-projet)  
+4. [Installation](#structure-du-projet)  
 5. [Compte Rendu (PDF)](./Compte_Rendu_RedBlackTree.pdf)  
 
 ---
@@ -29,14 +29,6 @@ Les opérations testées sont : **insertion, recherche et suppression** sur **1 
 
 ---
 
-## Installation
-
-Cloner le dépôt sur votre ordinateur :
-
-```bash
-git clone https://github.com/Md-marzak/Benchmarking-RougeNoirArbre.git
-cd Benchmarking-RougeNoirArbre
-
 ## Structure du Projet
 
 - `main.cpp` : Programme principal  
@@ -46,3 +38,14 @@ cd Benchmarking-RougeNoirArbre
 - `Node.h` : Implémentation de l'arbre générique
 - `README.md` : Ce fichier  
 - `Compte_Rendu_RedBlackTree.pdf` : Rapport détaillé
+  
+---
+## Installation
+
+Cloner le dépôt sur votre ordinateur :
+
+```bash
+git clone https://github.com/Md-marzak/Benchmarking-RougeNoirArbre.git
+cd Benchmarking-RougeNoirArbre
+
+
